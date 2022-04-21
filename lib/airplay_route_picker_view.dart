@@ -12,6 +12,7 @@ class AirPlayRoutePickerView extends StatelessWidget {
     this.backgroundColor,
     this.height = 44.0,
     this.width = 44.0,
+    this.prioritizesVideoDevices,
   }) : super(key: key);
 
   /// All of the attributes of this widget will effect the appearance of the
@@ -36,6 +37,8 @@ class AirPlayRoutePickerView extends StatelessWidget {
   /// Width of the container, that will just increase the tapable area of
   /// this button. By default the value is 44.0, but user can change it.
   final double width;
+
+  final bool? prioritizesVideoDevices;
 
   /// This function checks the presence of all the option attribute,
   /// and only packs the ones available. That helps the error handling
@@ -73,6 +76,10 @@ class AirPlayRoutePickerView extends StatelessWidget {
       tint['blue'] = backgroundColor!.blue;
       tint['alpha'] = backgroundColor!.alpha;
       creationParams['backgroundColor'] = tint;
+    }
+
+    if (prioritizesVideoDevices != null) {
+      creationParams['prioritizesVideoDevices'] = prioritizesVideoDevices;
     }
 
     // return the map of packed parameters to be sent to native code.
